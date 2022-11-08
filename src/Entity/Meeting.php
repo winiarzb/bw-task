@@ -32,6 +32,8 @@ class Meeting
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     public readonly ?int $participantsLimit;
 
+    private string $status;
+
     public function __construct(string $name, \DateTimeImmutable $startTime, int $participantsLimit = 5)
     {
         $this->id = uniqid();
@@ -75,5 +77,17 @@ class Meeting
         }
 
         return $meetingIsFull;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status)
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }
